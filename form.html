@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base target="_top">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  </script>
+
+  <script>
+    function openNewPage(){
+      // Get values from input fields
+  var linkData = document.getElementById("22").value;
+
+
+  // Open the new web page
+  window.open(linkData, '_blank');
+   }
+    function submitForm() {
+
+      google.script.run.appendRowFromFormSubmit(document.getElementById("feedbackForm"));
+     
+      document.getElementById("form").style.display = "none";
+      let button = document.getElementById('submit');
+      button.style.fontWeight = "bold";
+      button.value = "Submited!"
+      button.style.color = "#fff400";
+    }
+     
+     // Function to copy data to clipboard
+    function copyToClipboard(idRow) {
+       
+      var valueCell = document.getElementById(idRow).value;
+   
+      var textField = document.createElement('textarea');
+      textField.innerText = valueCell;
+      document.body.appendChild(textField);
+      textField.select();
+      document.execCommand('copy');
+      document.body.removeChild(textField);
+
+      // Change button text to 'Copied'
+      var button = document.getElementById('btn'+idRow);
+
+      var buttonText = document.getElementById('btn'+idRow).innerText;
+     
+      if (button && button.style.fontWeight === "bold" && button.style.color === "red") {
+       // Change the style to make the text bold
+       button.style.color = "blue";
+       button.style.fontWeight = "bold";
+       return;
+      }
+       if (button && button.style.fontWeight === "bold") {
+       // Change the style to make the text bold
+       button.style.color = "red";
+       button.style.fontWeight = "bold";
+       return;
+      }
+     
+      button.innerText = buttonText;
+      button.style.fontWeight = "bold";
+      
+      // button.disabled = true; // Optionally disable the button after copying
+    }
+ 
+  </script>
+  <style>
+    /* Backgroud button color */
+    .yellow-bg {
+      background-color: yellow;
+    }
+
+    .orange-bg {
+      background-color: #ff9d00;
+    }
+
+    .pink-bg {
+      background-color: #ff00f4;
+    }
+
+    button {
+      width: 140px;
+      font-size: 15px;
+      max-height: 30px;
+      overflow: hidden;
+      /* height:26px; */
+    }
+
+    /* Size input color */
+    .long {
+      width: 370px;
+    }
+
+    .short {
+      width: 145px;
+    }
+
+    .short-btn {
+      background-color: #00c4ff;
+      width: 95px;
+    }
+
+    .medium {
+      width: 270px;
+    }
+
+
+    /* Style for the form inputs */
+    input {
+      /* height:25px; */
+      /* Set the distance between inputs using margin-bottom */
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      /* Include padding and border in the element's total width and height */
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div id="form">
+    </div>
+  </div>
+  <div id="thanks" style="display: none;">
+    <p>Write authen code sussessfully!</p>
+  </div>
+</body>
+
+</html>
